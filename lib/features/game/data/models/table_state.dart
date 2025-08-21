@@ -41,10 +41,15 @@ class TableState {
   List<List<int>> getCaptureCombinations(PlayingCard card) {
     final combinations = <List<int>>[];
     
+    // Debug output
+    print('Getting capture combinations for: $card');
+    print('Table cards: ${faceUp.map((c) => '${c}(${c.value})').join(', ')}');
+    
     // Exact rank matches
     for (int i = 0; i < faceUp.length; i++) {
       if (faceUp[i].id.rank == card.id.rank) {
         combinations.add([i]);
+        print('  Found rank match at index $i: ${faceUp[i]}');
       }
     }
     
@@ -52,11 +57,14 @@ class TableState {
     if (!card.isJack) {
       // Check all possible values for the card (for Ace: 1 and 11)
       for (final cardValue in card.possibleValues) {
+        print('  Checking sum combinations for card value: $cardValue');
         final sumCombos = _findSumCombinations(cardValue);
         combinations.addAll(sumCombos);
+        print('  Found ${sumCombos.length} sum combinations: $sumCombos');
       }
     }
     
+    print('  Total combinations: ${combinations.length}');
     return combinations;
   }
 
@@ -98,7 +106,12 @@ class TableState {
 
   // Get cards at specific indices
   List<PlayingCard> getCardsAtIndices(List<int> indices) {
-    return indices.map((i) => faceUp[i]).toList();
+    return indices.map((i) {
+      if (i < 0 || i >= faceUp.length) {
+        throw RangeError('Index $i is out of range (0..${faceUp.length - 1})');
+      }
+      return faceUp[i];
+    }).toList();
   }
 
   bool get isEmpty => faceUp.isEmpty;

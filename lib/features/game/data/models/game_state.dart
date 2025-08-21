@@ -177,14 +177,14 @@ class GameState {
             ));
           }
         }
-      } else {
-        // Add place move
-        moves.add(Move(
-          type: MoveType.place,
-          card: card,
-          tableIndices: [],
-        ));
       }
+      
+      // Always add place move as an option
+      moves.add(Move(
+        type: MoveType.place,
+        card: card,
+        tableIndices: [],
+      ));
     }
 
     return moves;
@@ -193,6 +193,14 @@ class GameState {
   // Check if a move is valid
   bool isValidMove(Move move) {
     final validMoves = getValidMoves();
+    
+    // Debug output
+    print('Checking move: $move');
+    print('Valid moves count: ${validMoves.length}');
+    for (final validMove in validMoves) {
+      print('  Valid move: $validMove');
+    }
+    
     return validMoves.any((validMove) => 
       validMove.type == move.type &&
       validMove.card == move.card &&
