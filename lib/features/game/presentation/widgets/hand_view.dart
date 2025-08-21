@@ -52,13 +52,11 @@ class HandView extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              if (selectedCard != null)
+              if (selectedCard != null && isValidMove)
                 ElevatedButton(
-                  onPressed: isValidMove ? onCardPlay : null,
+                  onPressed: onCardPlay,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: isValidMove 
-                      ? ZandarColors.accent 
-                      : ZandarColors.scoreNeutral,
+                    backgroundColor: ZandarColors.accent,
                     foregroundColor: ZandarColors.onAccent,
                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     shape: RoundedRectangleBorder(
@@ -68,6 +66,21 @@ class HandView extends StatelessWidget {
                   child: Text(
                     'Play Card',
                     style: ZandarTypography.buttonText.copyWith(fontSize: 14),
+                  ),
+                )
+              else if (selectedCard != null && !isValidMove)
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  decoration: BoxDecoration(
+                    color: ZandarColors.scoreNeutral,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Text(
+                    'Not your turn',
+                    style: ZandarTypography.buttonText.copyWith(
+                      fontSize: 14,
+                      color: ZandarColors.onSurface.withOpacity(0.7),
+                    ),
                   ),
                 ),
             ],

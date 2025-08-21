@@ -133,13 +133,13 @@ class _TableScreenState extends ConsumerState<TableScreen> {
               ),
             ),
             
-            // Player Hand
+            // Player Hand - Only show for human player (always player 0)
             HandView(
-              hand: _gameState.currentPlayer.hand,
+              hand: _gameState.players[0].hand,
               selectedCard: _selectedCard,
               onCardTap: _onHandCardTap,
               onCardPlay: _onCardPlay,
-              isValidMove: _selectedCard != null && _canMakeMove(),
+              isValidMove: _selectedCard != null && _canMakeMove() && _gameState.currentPlayer.isHuman,
             ),
           ],
         ),
