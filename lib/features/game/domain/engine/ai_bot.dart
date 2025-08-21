@@ -9,7 +9,17 @@ class AIBot {
   Move generateMove(GameState gameState) {
     final validMoves = gameState.getValidMoves();
     if (validMoves.isEmpty) {
-      throw StateError('No valid moves available for AI');
+      // If no valid moves, create a place move with the first card in hand
+      final currentPlayer = gameState.currentPlayer;
+      if (currentPlayer.hand.isNotEmpty) {
+        return Move(
+          type: MoveType.place,
+          card: currentPlayer.hand.first,
+          tableIndices: [],
+        );
+      } else {
+        throw StateError('No valid moves available for AI and no cards in hand');
+      }
     }
 
     // Score each move
