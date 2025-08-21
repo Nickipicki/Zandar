@@ -125,7 +125,7 @@ class ScoreRibbon extends StatelessWidget {
         children: [
           Text(
             name,
-            style: ZandarTypography.bodySmall.copyWith(
+            style: ZandarTypography.textTheme.bodySmall!.copyWith(
               color: ZandarColors.onPrimary,
               fontWeight: FontWeight.w500,
             ),
@@ -190,7 +190,7 @@ class ScoreRibbon extends StatelessWidget {
           const SizedBox(width: 6),
           Text(
             isHumanTurn ? 'Your turn' : '${currentPlayer.displayName}\'s turn',
-            style: ZandarTypography.bodySmall.copyWith(
+            style: ZandarTypography.textTheme.bodySmall!.copyWith(
               color: isHumanTurn ? ZandarColors.validMove : ZandarColors.scoreNeutral,
               fontWeight: FontWeight.w500,
             ),

@@ -4,8 +4,6 @@ import '../../../../theme/colors.dart';
 import '../../../../theme/typography.dart';
 import '../../data/models/game_state.dart';
 import '../../data/models/player.dart';
-import '../../data/models/card.dart';
-import '../widgets/card_view.dart';
 import 'table_screen.dart';
 import 'lobby_screen.dart';
 
@@ -242,7 +240,7 @@ class ResultsScreen extends ConsumerWidget {
         children: [
           Text(
             'Game Statistics',
-            style: ZandarTypography.headlineSmall.copyWith(
+            style: ZandarTypography.textTheme.headlineSmall!.copyWith(
               color: ZandarColors.primary,
             ),
           ),
@@ -295,7 +293,7 @@ class ResultsScreen extends ConsumerWidget {
               const SizedBox(width: 8),
               Text(
                 label,
-                style: ZandarTypography.bodyMedium.copyWith(
+                style: ZandarTypography.textTheme.bodyMedium!.copyWith(
                   color: ZandarColors.onSurface,
                 ),
               ),
@@ -303,7 +301,7 @@ class ResultsScreen extends ConsumerWidget {
           ),
           Text(
             value,
-            style: ZandarTypography.bodyMedium.copyWith(
+            style: ZandarTypography.textTheme.bodyMedium!.copyWith(
               color: ZandarColors.primary,
               fontWeight: FontWeight.w500,
             ),

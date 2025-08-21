@@ -51,7 +51,7 @@ class PlayerBadge extends StatelessWidget {
               const SizedBox(width: 4),
               Text(
                 player.displayName,
-                style: ZandarTypography.bodySmall.copyWith(
+                style: ZandarTypography.textTheme.bodySmall!.copyWith(
                   color: ZandarColors.onPrimary,
                   fontWeight: FontWeight.w500,
                 ),
@@ -68,7 +68,7 @@ class PlayerBadge extends StatelessWidget {
             const SizedBox(height: 4),
             Text(
               '${player.hand.length} cards',
-              style: ZandarTypography.bodySmall.copyWith(
+              style: ZandarTypography.textTheme.bodySmall!.copyWith(
                 color: ZandarColors.onPrimary.withOpacity(0.7),
                 fontSize: 10,
               ),
@@ -123,7 +123,7 @@ class PlayerBadge extends StatelessWidget {
           Center(
             child: Text(
               '${player.captures.length}',
-              style: ZandarTypography.bodySmall.copyWith(
+              style: ZandarTypography.textTheme.bodySmall!.copyWith(
                 color: ZandarColors.onPrimary,
                 fontWeight: FontWeight.bold,
                 fontSize: 12,

@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter/services.dart';
 import '../../../../theme/colors.dart';
 import '../../../../theme/typography.dart';
 import '../../data/models/rules.dart';
 import '../../data/models/player.dart';
 import '../../data/models/game_state.dart';
 import '../../data/models/card.dart';
-import '../../data/models/table_state.dart';
 import '../../domain/engine/turn_engine.dart';
-import '../widgets/card_view.dart';
 import '../widgets/hand_view.dart';
 import '../widgets/table_grid.dart';
 import '../widgets/score_ribbon.dart';

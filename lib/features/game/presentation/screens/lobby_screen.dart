@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:easy_localization/easy_localization.dart';
 import '../../../../theme/colors.dart';
 import '../../../../theme/typography.dart';
+import '../../data/models/rules.dart';
 import '../widgets/game_mode_card.dart';
 import '../widgets/rules_selector.dart';
 import 'table_screen.dart';

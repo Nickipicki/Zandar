@@ -4,6 +4,7 @@ import '../../data/models/deck.dart';
 import '../../data/models/rules.dart';
 import '../../data/models/player.dart';
 import '../../data/models/table_state.dart';
+import '../../data/models/card.dart';
 import 'ai_bot.dart';
 
 class TurnEngine {
