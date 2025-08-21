@@ -40,6 +40,10 @@ android {
     kotlinOptions {
         jvmTarget = '17'
     }
+    
+    lintOptions {
+        disable 'InvalidPackage'
+    }
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
