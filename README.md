@@ -18,7 +18,7 @@ A Flutter implementation of the traditional Balkan fishing-style card game Žand
 Be the first to reach the target score (11 or 21 points) by capturing cards from the table.
 
 ### Card Values
-- Ace = 1, Jack = 11, Queen = 12, King = 13
+- Ace = 1 or 11, Jack = 11, Queen = 12, King = 13
 - Number cards = face value (2-10)
 
 ### Capturing Methods
@@ -139,12 +139,12 @@ lib/
 3. Customize card designs in `CardView`
 
 ## Building for Release
-
+coming
 ### Android
 ```bash
 flutter build apk --release
 ```
-
+coming
 ### iOS
 ```bash
 flutter build ios --release
@@ -162,15 +162,6 @@ flutter build ios --release
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Acknowledgments
-
-- Traditional Balkan card game community
-- Flutter team for the excellent framework
-- Contributors and testers
-
-## Support
-
-For questions or issues, please open an issue on GitHub or contact the development team.
 
 ---
 
