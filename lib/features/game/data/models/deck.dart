@@ -20,7 +20,7 @@ class Deck {
     return Deck._(cards, random);
   }
 
-  List<PlayingCard> get cards => List.unmodifiable(_cards);
+  List<PlayingCard> get cards => List.from(_cards);
 
   void shuffle() {
     _cards.shuffle(_random);

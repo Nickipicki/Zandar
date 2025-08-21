@@ -210,6 +210,7 @@ class GameState {
     final newPlayers = List<PlayerState>.from(players);
     final currentPlayerIndex = currentTurnIndex;
     final currentPlayer = newPlayers[currentPlayerIndex];
+    final newStock = List<PlayingCard>.from(stock);
 
     // Remove card from hand
     final newHand = List<PlayingCard>.from(currentPlayer.hand);
@@ -259,7 +260,7 @@ class GameState {
       }
 
       // Check if game is over (stock empty)
-      if (stock.isEmpty) {
+      if (newStock.isEmpty) {
         // Calculate deal score
         final dealScore = DealScore.fromPlayerStates(newPlayers);
         final dealPoints = dealScore.calculatePoints();
@@ -290,7 +291,7 @@ class GameState {
         );
       } else {
         // Deal more cards
-        return _dealMoreCards(newPlayers, newTable);
+        return _dealMoreCards(newPlayers, newTable, newStock);
       }
     } else {
       // Continue to next player
@@ -305,15 +306,16 @@ class GameState {
   }
 
   // Deal more cards to players
-  GameState _dealMoreCards(List<PlayerState> players, TableState table) {
+  GameState _dealMoreCards(List<PlayerState> players, TableState table, List<PlayingCard> currentStock) {
     final newPlayers = <PlayerState>[];
+    final newStock = List<PlayingCard>.from(currentStock);
     
     for (final player in players) {
       final cardsToDeal = rules.cardsPerDeal;
       final newHand = List<PlayingCard>.from(player.hand);
       
-      for (int i = 0; i < cardsToDeal && stock.isNotEmpty; i++) {
-        newHand.add(stock.removeAt(0));
+      for (int i = 0; i < cardsToDeal && newStock.isNotEmpty; i++) {
+        newHand.add(newStock.removeAt(0));
       }
       
       newPlayers.add(player.copyWith(hand: newHand));
@@ -322,6 +324,7 @@ class GameState {
     return copyWith(
       players: newPlayers,
       table: table,
+      stock: newStock,
       currentTurnIndex: currentTurnIndex,
       turnNonce: turnNonce + 1,
     );
