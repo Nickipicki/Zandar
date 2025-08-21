@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:easy_localization/easy_localization.dart';
 import '../../../../theme/colors.dart';
 import '../../../../theme/typography.dart';
 import '../../data/models/rules.dart';
@@ -25,32 +26,55 @@ class _LobbyScreenState extends ConsumerState<LobbyScreen> {
     return Scaffold(
       backgroundColor: ZandarColors.background,
       body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(24.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              // Header
-              Text(
-                'Žandar',
-                style: ZandarTypography.textTheme.displayMedium!.copyWith(
-                  color: ZandarColors.primary,
-                ),
-                textAlign: TextAlign.center,
+        child: Column(
+          children: [
+            // Settings Button
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                children: [
+                  IconButton(
+                    onPressed: _showLanguageSettings,
+                    icon: Icon(
+                      Icons.settings,
+                      color: ZandarColors.primary,
+                      size: 28,
+                    ),
+                    tooltip: 'Settings',
+                  ),
+                  const Spacer(),
+                ],
               ),
-              const SizedBox(height: 8),
-              Text(
-                'Traditional Balkan Card Game',
-                style: ZandarTypography.textTheme.bodyLarge!.copyWith(
-                  color: ZandarColors.onSurface.withOpacity(0.7),
-                ),
-                textAlign: TextAlign.center,
-              ),
+            ),
+            
+            // Main Content
+            Expanded(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                                        // Header
+                    Text(
+                      'app_title'.tr(),
+                      style: ZandarTypography.textTheme.displayMedium!.copyWith(
+                        color: ZandarColors.primary,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      'app_subtitle'.tr(),
+                      style: ZandarTypography.textTheme.bodyLarge!.copyWith(
+                        color: ZandarColors.onSurface.withOpacity(0.7),
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
               const SizedBox(height: 32),
 
               // Game Modes
               Text(
-                'Choose Game Mode',
+                'choose_game_mode'.tr(),
                 style: ZandarTypography.textTheme.headlineSmall!.copyWith(
                   color: ZandarColors.primary,
                 ),
@@ -61,8 +85,8 @@ class _LobbyScreenState extends ConsumerState<LobbyScreen> {
                 children: [
                   Expanded(
                     child: GameModeCard(
-                      title: 'Solo vs AI',
-                      subtitle: 'Play against computer',
+                      title: 'solo_vs_ai'.tr(),
+                      subtitle: 'solo_vs_ai_subtitle'.tr(),
                       icon: Icons.computer,
                       isSelected: !_isPartnership,
                       onTap: () => setState(() => _isPartnership = false),
@@ -71,8 +95,8 @@ class _LobbyScreenState extends ConsumerState<LobbyScreen> {
                   const SizedBox(width: 16),
                   Expanded(
                     child: GameModeCard(
-                      title: 'Partnership',
-                      subtitle: '2 vs 2 teams',
+                      title: 'partnership'.tr(),
+                      subtitle: 'partnership_subtitle'.tr(),
                       icon: Icons.group,
                       isSelected: _isPartnership,
                       onTap: () => setState(() => _isPartnership = true),
@@ -84,7 +108,7 @@ class _LobbyScreenState extends ConsumerState<LobbyScreen> {
 
               // Game Rules
               Text(
-                'House Rules',
+                'house_rules'.tr(),
                 style: ZandarTypography.textTheme.headlineSmall!.copyWith(
                   color: ZandarColors.primary,
                 ),
@@ -113,7 +137,7 @@ class _LobbyScreenState extends ConsumerState<LobbyScreen> {
                   ),
                 ),
                 child: Text(
-                  'Start Game',
+                  'start_game'.tr(),
                   style: ZandarTypography.buttonText.copyWith(
                     fontSize: 18,
                   ),
@@ -133,7 +157,7 @@ class _LobbyScreenState extends ConsumerState<LobbyScreen> {
                   ),
                 ),
                 child: Text(
-                  'How to Play',
+                  'how_to_play'.tr(),
                   style: ZandarTypography.buttonText.copyWith(
                     fontSize: 16,
                   ),
@@ -143,9 +167,10 @@ class _LobbyScreenState extends ConsumerState<LobbyScreen> {
             ],
           ),
         ),
-      ),
-    );
-  }
+      ],
+    ),
+  );
+}
 
   void _startGame() {
     final rules = Rules(
@@ -165,12 +190,54 @@ class _LobbyScreenState extends ConsumerState<LobbyScreen> {
     );
   }
 
+  void _showLanguageSettings() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(
+          'language_settings'.tr(),
+          style: ZandarTypography.textTheme.headlineSmall!,
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            _buildLanguageOption('English', 'en', '🇺🇸'),
+            _buildLanguageOption('Deutsch', 'de', '🇩🇪'),
+            _buildLanguageOption('Српски', 'sr', '🇷🇸'),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text('cancel'.tr()),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildLanguageOption(String name, String code, String flag) {
+    return ListTile(
+      leading: Text(flag, style: TextStyle(fontSize: 24)),
+      title: Text(name),
+      onTap: () {
+        // Change language
+        final locale = Locale(code);
+        context.setLocale(locale);
+        Navigator.of(context).pop();
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Language changed to $name')),
+        );
+      },
+    );
+  }
+
   void _showTutorial() {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         title: Text(
-          'How to Play Žandar',
+          'tutorial_title'.tr(),
           style: ZandarTypography.textTheme.headlineSmall!,
         ),
         content: SingleChildScrollView(
@@ -179,21 +246,16 @@ class _LobbyScreenState extends ConsumerState<LobbyScreen> {
             mainAxisSize: MainAxisSize.min,
             children: [
               _buildTutorialSection(
-                'Objective',
-                'Be the first to reach the target score by capturing cards.',
+                'objective'.tr(),
+                'objective_desc'.tr(),
               ),
               _buildTutorialSection(
-                'Capturing Cards',
-                '• Match: Play a card of the same rank as a table card\n'
-                '• Sum: Play a card equal to the sum of multiple table cards\n'
-                '• Jack: Sweeps all cards from the table',
+                'capturing_cards'.tr(),
+                'capturing_cards_desc'.tr(),
               ),
               _buildTutorialSection(
-                'Scoring',
-                '• +2 points: Most total cards captured\n'
-                '• +1 point: Most clubs captured\n'
-                '• +1 point: Captured 2♣ (little two)\n'
-                '• +1 point: Captured 10♦ (big ten)',
+                'scoring'.tr(),
+                'scoring_desc'.tr(),
               ),
             ],
           ),
@@ -201,7 +263,7 @@ class _LobbyScreenState extends ConsumerState<LobbyScreen> {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: Text('Got it!'),
+            child: Text('got_it'.tr()),
           ),
         ],
       ),
