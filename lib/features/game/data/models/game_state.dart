@@ -193,7 +193,12 @@ class GameState {
   // Check if a move is valid
   bool isValidMove(Move move) {
     final validMoves = getValidMoves();
-    return validMoves.contains(move);
+    return validMoves.any((validMove) => 
+      validMove.type == move.type &&
+      validMove.card == move.card &&
+      validMove.tableIndices.length == move.tableIndices.length &&
+      validMove.tableIndices.every((index) => move.tableIndices.contains(index))
+    );
   }
 
   // Apply a move and return new game state
