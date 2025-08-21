@@ -25,7 +25,7 @@ class _LobbyScreenState extends ConsumerState<LobbyScreen> {
     return Scaffold(
       backgroundColor: ZandarColors.background,
       body: SafeArea(
-        child: Padding(
+        child: SingleChildScrollView(
           padding: const EdgeInsets.all(24.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -46,7 +46,7 @@ class _LobbyScreenState extends ConsumerState<LobbyScreen> {
                 ),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 48),
+              const SizedBox(height: 32),
 
               // Game Modes
               Text(
@@ -80,7 +80,7 @@ class _LobbyScreenState extends ConsumerState<LobbyScreen> {
                   ),
                 ],
               ),
-              const SizedBox(height: 32),
+              const SizedBox(height: 24),
 
               // Game Rules
               Text(
@@ -99,7 +99,7 @@ class _LobbyScreenState extends ConsumerState<LobbyScreen> {
                 onSumCaptureChanged: (value) => setState(() => _allowSumCapture = value),
                 onJackSweepChanged: (value) => setState(() => _jackSweepsAll = value),
               ),
-              const SizedBox(height: 32),
+              const SizedBox(height: 24),
 
               // Start Game Button
               ElevatedButton(
@@ -139,6 +139,7 @@ class _LobbyScreenState extends ConsumerState<LobbyScreen> {
                   ),
                 ),
               ),
+              const SizedBox(height: 16), // Extra padding at bottom
             ],
           ),
         ),
