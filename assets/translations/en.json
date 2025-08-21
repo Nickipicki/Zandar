@@ -1,0 +1,77 @@
+{
+  "app_title": "Žandar",
+  "app_subtitle": "Traditional Balkan Card Game",
+  
+  "lobby": {
+    "choose_game_mode": "Choose Game Mode",
+    "solo_vs_ai": "Solo vs AI",
+    "solo_vs_ai_subtitle": "Play against computer",
+    "partnership": "Partnership",
+    "partnership_subtitle": "2 vs 2 teams",
+    "house_rules": "House Rules",
+    "target_score": "Target Score",
+    "target_score_subtitle": "First to {score} points wins",
+    "sum_capture": "Sum Capture",
+    "sum_capture_subtitle": "Allow capturing multiple cards that sum to your card's value",
+    "jack_sweep": "Jack Sweep",
+    "jack_sweep_subtitle": "Jacks capture all cards from the table",
+    "start_game": "Start Game",
+    "how_to_play": "How to Play"
+  },
+  
+  "tutorial": {
+    "title": "How to Play Žandar",
+    "objective_title": "Objective",
+    "objective_content": "Be the first to reach the target score by capturing cards.",
+    "capturing_title": "Capturing Cards",
+    "capturing_content": "• Match: Play a card of the same rank as a table card\n• Sum: Play a card equal to the sum of multiple table cards\n• Jack: Sweeps all cards from the table",
+    "scoring_title": "Scoring",
+    "scoring_content": "• +2 points: Most total cards captured\n• +1 point: Most clubs captured\n• +1 point: Captured 2♣ (little two)\n• +1 point: Captured 10♦ (big ten)",
+    "got_it": "Got it!"
+  },
+  
+  "game": {
+    "target": "Target: {score}",
+    "table": "Table ({count} cards)",
+    "table_empty": "Table is empty",
+    "your_hand": "Your Hand ({count})",
+    "no_cards_in_hand": "No cards in hand",
+    "play_card": "Play Card",
+    "your_turn": "Your turn",
+    "ai_turn": "{name}'s turn",
+    "deal_complete": "Deal Complete!",
+    "deal_score": "Deal Score:",
+    "continue": "Continue",
+    "invalid_move": "Invalid move: {error}"
+  },
+  
+  "results": {
+    "victory": "Victory!",
+    "game_over": "Game Over",
+    "wins": "{name} wins!",
+    "its_a_tie": "It's a tie!",
+    "final_scores": "Final Scores",
+    "game_statistics": "Game Statistics",
+    "most_cards": "Most Cards",
+    "most_clubs": "Most Clubs",
+    "two_of_clubs_captured": "2♣ Captured",
+    "ten_of_diamonds_captured": "10♦ Captured",
+    "tie": "Tie",
+    "none": "None",
+    "play_again": "Play Again",
+    "back_to_lobby": "Back to Lobby"
+  },
+  
+  "teams": {
+    "team_ns": "Team N-S",
+    "team_ew": "Team E-W"
+  },
+  
+  "players": {
+    "you": "You",
+    "ai": "AI",
+    "ai_1": "AI 1",
+    "ai_2": "AI 2",
+    "ai_3": "AI 3"
+  }
+}
