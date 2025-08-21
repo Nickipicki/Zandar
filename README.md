@@ -44,8 +44,8 @@ Be the first to reach the target score (11 or 21 points) by capturing cards from
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/zandar.git
-   cd zandar
+   git clone https://github.com/Nickipicki/Zandar.git
+   cd Zandar
    ```
 
 2. **Install dependencies**
