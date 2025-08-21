@@ -25,9 +25,12 @@ class TableState {
   // Remove cards from the table
   TableState removeCards(List<int> indices) {
     final newFaceUp = List<PlayingCard>.from(faceUp);
-    // Remove in reverse order to maintain indices
-    for (int i = indices.length - 1; i >= 0; i--) {
-      newFaceUp.removeAt(indices[i]);
+    // Sort indices in descending order and remove to maintain valid indices
+    final sortedIndices = List<int>.from(indices)..sort((a, b) => b.compareTo(a));
+    for (final index in sortedIndices) {
+      if (index >= 0 && index < newFaceUp.length) {
+        newFaceUp.removeAt(index);
+      }
     }
     return copyWith(faceUp: newFaceUp);
   }
@@ -96,6 +99,14 @@ class TableState {
     }
     
     backtrack(0, 0, [], []);
+    
+    // Debug output for sum combinations
+    print('    Target: $target, Found combinations: $combinations');
+    for (final combo in combinations) {
+      final values = combo.map((i) => '${faceUp[i]}(${faceUp[i].value})').join(' + ');
+      print('    Combination: $combo = $values');
+    }
+    
     return combinations;
   }
 
