@@ -251,8 +251,13 @@ class _TableScreenState extends ConsumerState<TableScreen> {
     });
 
     try {
+      // Debug output
+      print('Selected card: $_selectedCard');
+      print('Selected table indices: $_selectedTableIndices');
+      
       // Create the move
       final move = _createMove();
+      print('Created move: $move');
       
       // Apply the move
       final newGameState = _gameState.applyMove(move);
@@ -273,6 +278,7 @@ class _TableScreenState extends ConsumerState<TableScreen> {
         _showDealResults();
       }
     } catch (e) {
+      print('Error in _onCardPlay: $e');
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Invalid move: $e')),
       );
