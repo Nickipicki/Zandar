@@ -50,8 +50,11 @@ class TableState {
     
     // Sum combinations (if not a Jack)
     if (!card.isJack) {
-      final sumCombos = _findSumCombinations(card.value);
-      combinations.addAll(sumCombos);
+      // Check all possible values for the card (for Ace: 1 and 11)
+      for (final cardValue in card.possibleValues) {
+        final sumCombos = _findSumCombinations(cardValue);
+        combinations.addAll(sumCombos);
+      }
     }
     
     return combinations;
@@ -60,9 +63,11 @@ class TableState {
   // Find combinations of table cards that sum to target value
   List<List<int>> _findSumCombinations(int target) {
     final combinations = <List<int>>[];
-    final values = faceUp.map((card) => card.value).toList();
     
-    void backtrack(int start, int currentSum, List<int> currentCombo) {
+    // Get all possible values for each table card (for Aces: [1, 11], for others: [value])
+    final cardValueOptions = faceUp.map((card) => card.possibleValues).toList();
+    
+    void backtrack(int start, int currentSum, List<int> currentCombo, List<int> usedValues) {
       if (currentSum == target && currentCombo.isNotEmpty) {
         combinations.add(List.from(currentCombo));
         return;
@@ -70,14 +75,19 @@ class TableState {
       
       if (currentSum > target) return;
       
-      for (int i = start; i < values.length; i++) {
-        currentCombo.add(i);
-        backtrack(i + 1, currentSum + values[i], currentCombo);
-        currentCombo.removeLast();
+      for (int i = start; i < faceUp.length; i++) {
+        for (int j = 0; j < cardValueOptions[i].length; j++) {
+          final value = cardValueOptions[i][j];
+          currentCombo.add(i);
+          usedValues.add(value);
+          backtrack(i + 1, currentSum + value, currentCombo, usedValues);
+          currentCombo.removeLast();
+          usedValues.removeLast();
+        }
       }
     }
     
-    backtrack(0, 0, []);
+    backtrack(0, 0, [], []);
     return combinations;
   }
 

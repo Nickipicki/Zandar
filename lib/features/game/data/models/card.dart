@@ -81,11 +81,17 @@ class PlayingCard {
   Map<String, dynamic> toJson() => _$PlayingCardToJson(this);
 
   int get value => switch (id.rank) {
-    Rank.ace => 1,
+    Rank.ace => 11, // Ass ist standardmäßig 11, kann aber auch als 1 verwendet werden
     Rank.jack => 11,
     Rank.queen => 12,
     Rank.king => 13,
     _ => id.rank.index + 1
+  };
+
+  // Get all possible values for this card (for Ace: [1, 11], for others: [value])
+  List<int> get possibleValues => switch (id.rank) {
+    Rank.ace => [1, 11],
+    _ => [value]
   };
 
   bool get isJack => id.rank == Rank.jack;
