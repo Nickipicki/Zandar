@@ -267,27 +267,27 @@ class GameState {
         newTable = newTable.clear();
       }
 
-      // Check if game is over (stock empty)
-      if (newStock.isEmpty) {
-        // Calculate deal score
-        final dealScore = DealScore.fromPlayerStates(newPlayers);
-        final dealPoints = dealScore.calculatePoints();
-        
-        // Update total scores
-        final newScore = Map<String, int>.from(score);
-        for (final entry in dealPoints.entries) {
-          newScore[entry.key] = (newScore[entry.key] ?? 0) + entry.value;
-        }
+      // Calculate deal score
+      final dealScore = DealScore.fromPlayerStates(newPlayers);
+      final dealPoints = dealScore.calculatePoints();
+      
+      // Update total scores
+      final newScore = Map<String, int>.from(score);
+      for (final entry in dealPoints.entries) {
+        newScore[entry.key] = (newScore[entry.key] ?? 0) + entry.value;
+      }
 
-        // Check for winner
-        String? newWinner;
-        for (final entry in newScore.entries) {
-          if (entry.value >= rules.targetScore) {
-            newWinner = entry.key;
-            break;
-          }
+      // Check for winner
+      String? newWinner;
+      for (final entry in newScore.entries) {
+        if (entry.value >= rules.targetScore) {
+          newWinner = entry.key;
+          break;
         }
+      }
 
+      // Check if game is over (stock empty or winner found)
+      if (newStock.isEmpty || newWinner != null) {
         return copyWith(
           players: newPlayers,
           table: newTable,

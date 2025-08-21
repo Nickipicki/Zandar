@@ -112,20 +112,33 @@ class HandView extends StatelessWidget {
           final card = hand[index];
           final isSelected = selectedCard == card;
           
-          return Padding(
-            padding: EdgeInsets.only(
-              right: index < hand.length - 1 ? 8 : 0,
-            ),
-            child: Transform.translate(
-              offset: Offset(0, isSelected ? -10 : 0),
-              child: CardView(
-                card: card,
-                isSelected: isSelected,
-                onTap: () => onCardTap(card),
-                width: 70,
-                height: 90,
-              ),
-            ),
+          return TweenAnimationBuilder<double>(
+            duration: Duration(milliseconds: 300 + (index * 50)),
+            tween: Tween(begin: 0.0, end: 1.0),
+            builder: (context, value, child) {
+              return AnimatedContainer(
+                duration: const Duration(milliseconds: 200),
+                curve: Curves.easeInOut,
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    right: index < hand.length - 1 ? 8 : 0,
+                  ),
+                  child: Transform.translate(
+                    offset: Offset(0, isSelected ? -10 : 0),
+                    child: Transform.scale(
+                      scale: 0.9 + (value * 0.1),
+                      child: CardView(
+                        card: card,
+                        isSelected: isSelected,
+                        onTap: () => onCardTap(card),
+                        width: 70,
+                        height: 90,
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            },
           );
         },
       ),

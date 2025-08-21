@@ -27,26 +27,37 @@ class CardView extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        width: width,
-        height: height,
-        decoration: BoxDecoration(
-          color: isFaceDown ? ZandarColors.primary : ZandarColors.cardBackground,
-          borderRadius: BorderRadius.circular(8),
-          border: Border.all(
-            color: _getBorderColor(),
-            width: isSelected ? 3 : 1,
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: _getShadowColor(),
-              blurRadius: isSelected ? 8 : 4,
-              offset: Offset(0, isSelected ? 4 : 2),
+      child: TweenAnimationBuilder<double>(
+        duration: const Duration(milliseconds: 300),
+        tween: Tween(begin: 0.0, end: 1.0),
+        builder: (context, value, child) {
+          return Transform.scale(
+            scale: 0.8 + (value * 0.2),
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 250),
+              curve: Curves.easeInOut,
+              width: width,
+              height: height,
+              decoration: BoxDecoration(
+                color: isFaceDown ? ZandarColors.primary : ZandarColors.cardBackground,
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(
+                  color: _getBorderColor(),
+                  width: isSelected ? 3 : 1,
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: _getShadowColor(),
+                    blurRadius: isSelected ? 12 : 6,
+                    offset: Offset(0, isSelected ? 6 : 3),
+                    spreadRadius: isSelected ? 2 : 0,
+                  ),
+                ],
+              ),
+              child: isFaceDown ? _buildFaceDown() : _buildFaceUp(),
             ),
-          ],
-        ),
-        child: isFaceDown ? _buildFaceDown() : _buildFaceUp(),
+          );
+        },
       ),
     );
   }

@@ -111,16 +111,31 @@ class TableGrid extends StatelessWidget {
               final card = tableState.faceUp[cardIndex];
               final isSelected = selectedIndices.contains(cardIndex);
 
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 4),
-                child: CardView(
-                  card: card,
-                  isSelected: isSelected,
-                  isHighlighted: isSelected,
-                  onTap: () => onCardTap(cardIndex),
-                  width: 70,
-                  height: 90,
-                ),
+              return TweenAnimationBuilder<double>(
+                duration: Duration(milliseconds: 400 + (cardIndex * 100)),
+                tween: Tween(begin: 0.0, end: 1.0),
+                builder: (context, value, child) {
+                  return Transform.scale(
+                    scale: 0.7 + (value * 0.3),
+                    child: Transform.translate(
+                      offset: Offset(0, 30 * (1 - value)),
+                      child: Opacity(
+                        opacity: value,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 4),
+                          child: CardView(
+                            card: card,
+                            isSelected: isSelected,
+                            isHighlighted: isSelected,
+                            onTap: () => onCardTap(cardIndex),
+                            width: 70,
+                            height: 90,
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                },
               );
             }),
           ),
