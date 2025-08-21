@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:easy_localization/easy_localization.dart';
-import '../../../theme/colors.dart';
-import '../../../theme/typography.dart';
+import '../../../../theme/colors.dart';
+import '../../../../theme/typography.dart';
 import '../widgets/game_mode_card.dart';
 import '../widgets/rules_selector.dart';
 import 'table_screen.dart';
@@ -33,7 +33,7 @@ class _LobbyScreenState extends ConsumerState<LobbyScreen> {
               // Header
               Text(
                 'Žandar',
-                style: ZandarTypography.displayMedium.copyWith(
+                style: ZandarTypography.textTheme.displayMedium!.copyWith(
                   color: ZandarColors.primary,
                 ),
                 textAlign: TextAlign.center,
@@ -41,7 +41,7 @@ class _LobbyScreenState extends ConsumerState<LobbyScreen> {
               const SizedBox(height: 8),
               Text(
                 'Traditional Balkan Card Game',
-                style: ZandarTypography.bodyLarge.copyWith(
+                style: ZandarTypography.textTheme.bodyLarge!.copyWith(
                   color: ZandarColors.onSurface.withOpacity(0.7),
                 ),
                 textAlign: TextAlign.center,
@@ -51,7 +51,7 @@ class _LobbyScreenState extends ConsumerState<LobbyScreen> {
               // Game Modes
               Text(
                 'Choose Game Mode',
-                style: ZandarTypography.headlineSmall.copyWith(
+                style: ZandarTypography.textTheme.headlineSmall!.copyWith(
                   color: ZandarColors.primary,
                 ),
               ),
@@ -85,7 +85,7 @@ class _LobbyScreenState extends ConsumerState<LobbyScreen> {
               // Game Rules
               Text(
                 'House Rules',
-                style: ZandarTypography.headlineSmall.copyWith(
+                style: ZandarTypography.textTheme.headlineSmall!.copyWith(
                   color: ZandarColors.primary,
                 ),
               ),
@@ -170,7 +170,7 @@ class _LobbyScreenState extends ConsumerState<LobbyScreen> {
       builder: (context) => AlertDialog(
         title: Text(
           'How to Play Žandar',
-          style: ZandarTypography.headlineSmall,
+          style: ZandarTypography.textTheme.headlineSmall!,
         ),
         content: SingleChildScrollView(
           child: Column(
@@ -215,7 +215,7 @@ class _LobbyScreenState extends ConsumerState<LobbyScreen> {
         children: [
           Text(
             title,
-            style: ZandarTypography.titleMedium.copyWith(
+            style: ZandarTypography.textTheme.titleMedium!.copyWith(
               color: ZandarColors.primary,
               fontWeight: FontWeight.bold,
             ),
@@ -223,7 +223,7 @@ class _LobbyScreenState extends ConsumerState<LobbyScreen> {
           const SizedBox(height: 8),
           Text(
             content,
-            style: ZandarTypography.bodyMedium,
+            style: ZandarTypography.textTheme.bodyMedium!,
           ),
         ],
       ),

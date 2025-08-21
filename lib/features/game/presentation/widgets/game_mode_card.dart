@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../theme/colors.dart';
-import '../../../theme/typography.dart';
+import '../../../../theme/colors.dart';
+import '../../../../theme/typography.dart';
 
 class GameModeCard extends StatelessWidget {
   final String title;
@@ -53,7 +53,7 @@ class GameModeCard extends StatelessWidget {
             const SizedBox(height: 12),
             Text(
               title,
-              style: ZandarTypography.titleMedium.copyWith(
+              style: ZandarTypography.textTheme.titleMedium!.copyWith(
                 color: isSelected ? ZandarColors.onPrimary : ZandarColors.onSurface,
                 fontWeight: FontWeight.bold,
               ),
@@ -62,7 +62,7 @@ class GameModeCard extends StatelessWidget {
             const SizedBox(height: 4),
             Text(
               subtitle,
-              style: ZandarTypography.bodySmall.copyWith(
+              style: ZandarTypography.textTheme.bodySmall!.copyWith(
                 color: isSelected 
                   ? ZandarColors.onPrimary.withOpacity(0.8)
                   : ZandarColors.onSurface.withOpacity(0.7),

@@ -25,7 +25,7 @@ class ZandarApp extends StatelessWidget {
         fontFamily: 'Inter',
         
         // Card theme
-        cardTheme: CardTheme(
+        cardTheme: CardThemeData(
           elevation: 4,
           shadowColor: ZandarColors.shadow,
           shape: RoundedRectangleBorder(
@@ -39,7 +39,7 @@ class ZandarApp extends StatelessWidget {
           foregroundColor: ZandarColors.onPrimary,
           elevation: 0,
           centerTitle: true,
-          titleTextStyle: ZandarTypography.headlineSmall.copyWith(
+          titleTextStyle: ZandarTypography.textTheme.headlineSmall!.copyWith(
             color: ZandarColors.onPrimary,
           ),
         ),

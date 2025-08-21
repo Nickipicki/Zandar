@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../theme/colors.dart';
-import '../../../theme/typography.dart';
+import '../../../../theme/colors.dart';
+import '../../../../theme/typography.dart';
 import '../../data/models/game_state.dart';
+import '../../data/models/player.dart';
+import '../../data/models/card.dart';
 import '../widgets/card_view.dart';
+import 'table_screen.dart';
 import 'lobby_screen.dart';
 
 class ResultsScreen extends ConsumerWidget {
@@ -32,7 +35,7 @@ class ResultsScreen extends ConsumerWidget {
               // Header
               Text(
                 isPlayerWin ? 'Victory!' : 'Game Over',
-                style: ZandarTypography.displayMedium.copyWith(
+                style: ZandarTypography.textTheme.displayMedium!.copyWith(
                   color: isPlayerWin ? ZandarColors.scorePositive : ZandarColors.scoreNegative,
                 ),
                 textAlign: TextAlign.center,
@@ -40,7 +43,7 @@ class ResultsScreen extends ConsumerWidget {
               const SizedBox(height: 8),
               Text(
                 winner != null ? '${winner.displayName} wins!' : 'It\'s a tie!',
-                style: ZandarTypography.titleLarge.copyWith(
+                style: ZandarTypography.textTheme.titleLarge!.copyWith(
                   color: ZandarColors.onSurface.withOpacity(0.7),
                 ),
                 textAlign: TextAlign.center,
@@ -113,7 +116,7 @@ class ResultsScreen extends ConsumerWidget {
         children: [
           Text(
             'Final Scores',
-            style: ZandarTypography.headlineSmall.copyWith(
+            style: ZandarTypography.textTheme.headlineSmall!.copyWith(
               color: ZandarColors.primary,
             ),
           ),
@@ -148,7 +151,7 @@ class ResultsScreen extends ConsumerWidget {
                   const SizedBox(width: 8),
                   Text(
                     player.displayName,
-                    style: ZandarTypography.titleMedium.copyWith(
+                    style: ZandarTypography.textTheme.titleMedium!.copyWith(
                       color: isWinner ? ZandarColors.scorePositive : ZandarColors.onSurface,
                       fontWeight: isWinner ? FontWeight.bold : FontWeight.normal,
                     ),
@@ -200,13 +203,13 @@ class ResultsScreen extends ConsumerWidget {
               size: 20,
             ),
             const SizedBox(width: 8),
-            Text(
-              teamName,
-              style: ZandarTypography.titleMedium.copyWith(
-                color: isWinner ? ZandarColors.scorePositive : ZandarColors.onSurface,
-                fontWeight: isWinner ? FontWeight.bold : FontWeight.normal,
+                          Text(
+                teamName,
+                style: ZandarTypography.textTheme.titleMedium!.copyWith(
+                  color: isWinner ? ZandarColors.scorePositive : ZandarColors.onSurface,
+                  fontWeight: isWinner ? FontWeight.bold : FontWeight.normal,
+                ),
               ),
-            ),
           ],
         ),
         Text(

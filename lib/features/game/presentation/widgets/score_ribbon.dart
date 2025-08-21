@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../theme/colors.dart';
-import '../../../theme/typography.dart';
+import '../../../../theme/colors.dart';
+import '../../../../theme/typography.dart';
 import '../../data/models/game_state.dart';
 
 class ScoreRibbon extends StatelessWidget {
@@ -32,7 +32,7 @@ class ScoreRibbon extends StatelessWidget {
           // Target score
           Text(
             'Target: ${gameState.rules.targetScore}',
-            style: ZandarTypography.titleMedium.copyWith(
+            style: ZandarTypography.textTheme.titleMedium!.copyWith(
               color: ZandarColors.onPrimary,
               fontWeight: FontWeight.bold,
             ),

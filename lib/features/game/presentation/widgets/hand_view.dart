@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../theme/colors.dart';
-import '../../../theme/typography.dart';
+import '../../../../theme/colors.dart';
+import '../../../../theme/typography.dart';
 import '../../data/models/card.dart';
 import 'card_view.dart';
 
@@ -47,7 +47,7 @@ class HandView extends StatelessWidget {
             children: [
               Text(
                 'Your Hand (${hand.length})',
-                style: ZandarTypography.titleMedium.copyWith(
+                style: ZandarTypography.textTheme.titleMedium!.copyWith(
                   color: ZandarColors.primary,
                   fontWeight: FontWeight.bold,
                 ),
@@ -94,7 +94,7 @@ class HandView extends StatelessWidget {
       child: Center(
         child: Text(
           'No cards in hand',
-          style: ZandarTypography.bodyMedium.copyWith(
+                              style: ZandarTypography.textTheme.bodyMedium!.copyWith(
             color: ZandarColors.onSurface.withOpacity(0.5),
           ),
         ),

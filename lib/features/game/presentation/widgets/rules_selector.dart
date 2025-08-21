@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../theme/colors.dart';
-import '../../../theme/typography.dart';
+import '../../../../theme/colors.dart';
+import '../../../../theme/typography.dart';
 
 class RulesSelector extends StatelessWidget {
   final int targetScore;
@@ -92,7 +92,7 @@ class RulesSelector extends StatelessWidget {
         children: [
           Text(
             title,
-            style: ZandarTypography.titleMedium.copyWith(
+            style: ZandarTypography.textTheme.titleMedium!.copyWith(
               color: ZandarColors.primary,
               fontWeight: FontWeight.bold,
             ),
@@ -100,7 +100,7 @@ class RulesSelector extends StatelessWidget {
           const SizedBox(height: 4),
           Text(
             subtitle,
-            style: ZandarTypography.bodySmall.copyWith(
+            style: ZandarTypography.textTheme.bodySmall!.copyWith(
               color: ZandarColors.onSurface.withOpacity(0.7),
             ),
           ),
@@ -128,7 +128,7 @@ class RulesSelector extends StatelessWidget {
         ),
         child: Text(
           label,
-          style: ZandarTypography.titleMedium.copyWith(
+          style: ZandarTypography.textTheme.titleMedium!.copyWith(
             color: isSelected ? ZandarColors.onAccent : ZandarColors.onSurface,
             fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
           ),

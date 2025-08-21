@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../theme/colors.dart';
-import '../../../theme/typography.dart';
+import '../../../../theme/colors.dart';
+import '../../../../theme/typography.dart';
 import '../../data/models/table_state.dart';
 import 'card_view.dart';
 
@@ -29,7 +29,7 @@ class TableGrid extends StatelessWidget {
         children: [
           Text(
             'Table (${tableState.faceUp.length} cards)',
-            style: ZandarTypography.titleMedium.copyWith(
+            style: ZandarTypography.textTheme.titleMedium!.copyWith(
               color: ZandarColors.onPrimary,
               fontWeight: FontWeight.bold,
             ),
@@ -49,7 +49,7 @@ class TableGrid extends StatelessWidget {
         children: [
           Text(
             'Table is empty',
-            style: ZandarTypography.titleMedium.copyWith(
+            style: ZandarTypography.textTheme.titleMedium!.copyWith(
               color: ZandarColors.onPrimary,
               fontWeight: FontWeight.bold,
             ),
